@@ -1,0 +1,45 @@
+﻿@model Blogcum.Models.Blogcular
+@{
+    ViewBag.Title = "BlogcuGuncelle";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h2>BlogcuGuncelle</h2>
+<hr />
+
+@using (Html.BeginForm())
+{
+
+    <div class="input-group">
+        <span class="input-group-addon" id="txtblogcuad">Blogcu Adı</span>
+        @Html.TextBoxFor(x => x.BlogcuAdi, new { @class = "form-control", placeholder = "blogcu adı", aria_describedby = "txtblogcuad" })
+    </div>
+    <br>
+
+    <div class="input-group">
+        <span class="input-group-addon" id="txtblogcusoyad">Blogcu Soyadı</span>
+        @Html.TextBoxFor(x => x.BlogcuSoyadi, new { @class = "form-control", placeholder = "blogcu soyadı", aria_describedby = "txtblogcusoyad" })
+    </div>
+    <br>
+
+
+    <div class="input-group ">
+        <input type="submit" value="Kaydet" class="btn btn-warning" />
+
+    </div>
+
+    <br />
+
+    <div class="input-group">
+        @if (ViewBag.Result != null)
+        {
+            <div class="alert alert-@ViewBag.Status" role="alert">
+                @ViewBag.Result
+            </div>
+
+        }
+
+    </div>
+
+}
+

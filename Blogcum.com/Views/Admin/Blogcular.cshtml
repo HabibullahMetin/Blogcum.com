@@ -1,0 +1,58 @@
+﻿@using Blogcum.ViewModels
+@model RelatedClass
+
+
+
+@{
+    ViewBag.Title = "Blogcular";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div>
+                @Html.ActionLink("Yeni Blogcu","BlogcuEkle",null,new { @class ="btn btn-success" })
+                <br /> <br />
+            </div>
+
+           <ul class="list-group">
+
+               <li class="list-group-item active" >
+                   Blogcular
+                   <br />
+
+               </li>
+
+           </ul>
+
+        </div>
+        <div class="row">
+
+            <div class="col-md-12">
+                
+
+    @foreach (var blogcu in Model.Blogcular)
+    {
+        <ul>
+            <li class="list-group-item">
+
+                @(blogcu.BlogcuAdi + " " + blogcu.BlogcuSoyadi)
+                @Html.ActionLink("Güncelle","BlogcuGuncelle",new { blogcuid = blogcu.BlogcuID },new { @class ="btn btn-primary"})
+                @Html.ActionLink("Sil", "BlogcuSil", new { blogcuid = blogcu.BlogcuID }, new { @class = "btn btn-danger" })
+            </li>
+
+        </ul>
+    }
+
+</div>
+
+        </div>
+        </div>
+       
+      
+
+<h6> Bu sayfa simdilik boştur. Blogcular kayıt olduğunda eklenecektir.</h6>
+
+
+

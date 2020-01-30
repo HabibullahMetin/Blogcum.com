@@ -1,0 +1,47 @@
+﻿@using Blogcum.ViewModels
+@model RelatedClass
+@{
+    ViewBag.Title = "Iletisim";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<div>
+    @Html.ActionLink("Yeni Ileti", "IletiEkle", null, new { @class = "btn btn-success" })
+    <br /> <br />
+</div>
+
+@foreach (var ileti in Model.Iletisim)
+{
+    <ul class="list-group">
+        <li class="list-group-item">
+
+            <h6> Konu :</h6> @ileti.Konu <br />
+
+            <h6> Ileti :</h6>    @ileti.Ileti
+
+            <h6> Blogcu Adı :  </h6>     @ileti.Blogcular.BlogcuAdi
+
+            <h6> Blogcu Soyadı :  </h6>   @ileti.Blogcular.BlogcuSoyadi
+            @Html.ActionLink("Güncelle", "IletiGuncelle", new { iletiid = ileti.IletiID }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Sil", "IletiSil", new { iletiid = ileti.IletiID }, new { @class = "btn btn-danger" })
+        </li>
+
+    </ul>
+}
+@*
+    @using (Html.BeginForm())
+    {
+
+        <p>
+            <i>
+
+
+                Konu : @Html.TextBoxFor(x => x.Konu)  <br />
+                İletiniz : @Html.TextAreaFor(x => x.Ileti)  <br />
+            </i>
+        </p>
+    }
+
+    <input type="submit" value="Gönder" name="Gonder" />  *@
+<h2>Iletisim</h2>
+

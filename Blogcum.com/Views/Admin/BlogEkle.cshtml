@@ -1,0 +1,49 @@
+﻿@model Blogcum.Models.Bloglar
+@{
+    ViewBag.Title = "BlogEkle";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h2>BlogEkle</h2>
+<hr />
+
+@using (Html.BeginForm())
+{
+
+    <div class="input-group">
+        <span class="input-group-addon" id="txtkategori">Kategori</span>
+        @Html.TextBoxFor(x => x.Kategori, new { @class = "form-control", placeholder = "kategori adı", aria_describedby = "txtkategori" })
+    </div>
+    <br>
+
+    <div class="input-group">
+        <span class="input-group-addon" id="txtblog">Blog Yazısı</span>
+        @Html.TextAreaFor(x => x.BlogYazisi, new { @class = "form-control", placeholder = "blog yazısı", aria_describedby = "txtblog",cols="80",rows="20" })
+    </div>
+    <br>
+
+    <div class="input-group">
+        <span class="input-group-addon" id="ddlblogcu">Blogcu </span>
+ @Html.DropDownListFor(x => x.Blogcular.BlogcuID,(List<SelectListItem>)ViewBag.Blogcular, new { @class = "form-control",aria_describedby = "ddlblogcu",  })
+    </div>
+    <br>
+
+    <div class="input-group ">
+        <input type="submit" value="Kaydet" class="btn btn-warning" />
+
+    </div>
+
+    <br />
+
+    <div class="input-group">
+        @if (ViewBag.Result != null)
+        {
+            <div class="alert alert-@ViewBag.Status" role="alert">
+                @ViewBag.Result
+            </div>
+
+        }
+
+    </div>
+
+}

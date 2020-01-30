@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Giris";
+    Layout = "~/Views/Shared/Anasayfa_Layout.cshtml";
+}
+@using (Html.BeginForm())
+{
+
+    <p>
+        <i>
+            Adınız : @Html.TextBoxFor(x => x.BlogcuAdi)  <br />
+            Soyadınız : @Html.TextBoxFor(x => x.BlogcuSoyadi) <br />
+            Sifreniz : @Html.PasswordFor(x => x.Sifre)  <br />
+
+        </i>
+    </p>
+}
+
+<input type="submit" value="Kayıt Ol" name="Kayit" />
+<h2>Giris</h2>
+
