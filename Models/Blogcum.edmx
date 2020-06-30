@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Blogcum4Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Blogcular">
+          <Key>
+            <PropertyRef Name="BlogcuID" />
+          </Key>
+          <Property Name="BlogcuID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BlogcuAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BlogcuSoyadi" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Bloglar">
+          <Key>
+            <PropertyRef Name="BlogYazisiID" />
+          </Key>
+          <Property Name="BlogYazisiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BlogYazisi" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Kategori" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="BlogcuID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Iletisim">
+          <Key>
+            <PropertyRef Name="IletiID" />
+          </Key>
+          <Property Name="IletiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ileti" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Konu" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="BlogcuID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Yorumlar">
+          <Key>
+            <PropertyRef Name="YorumID" />
+          </Key>
+          <Property Name="YorumID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Yorum" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="BlogcuID" Type="int" Nullable="false" />
+          <Property Name="BlogYazisiID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Bloglar_Blogcular">
+          <End Role="Blogcular" Type="Self.Blogcular" Multiplicity="1" />
+          <End Role="Bloglar" Type="Self.Bloglar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Blogcular">
+              <PropertyRef Name="BlogcuID" />
+            </Principal>
+            <Dependent Role="Bloglar">
+              <PropertyRef Name="BlogcuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Iletisim_Blogcular">
+          <End Role="Blogcular" Type="Self.Blogcular" Multiplicity="1" />
+          <End Role="Iletisim" Type="Self.Iletisim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Blogcular">
+              <PropertyRef Name="BlogcuID" />
+            </Principal>
+            <Dependent Role="Iletisim">
+              <PropertyRef Name="BlogcuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Yorumlar_Blogcular">
+          <End Role="Blogcular" Type="Self.Blogcular" Multiplicity="1" />
+          <End Role="Yorumlar" Type="Self.Yorumlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Blogcular">
+              <PropertyRef Name="BlogcuID" />
+            </Principal>
+            <Dependent Role="Yorumlar">
+              <PropertyRef Name="BlogcuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Yorumlar_Bloglar">
+          <End Role="Bloglar" Type="Self.Bloglar" Multiplicity="1" />
+          <End Role="Yorumlar" Type="Self.Yorumlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bloglar">
+              <PropertyRef Name="BlogYazisiID" />
+            </Principal>
+            <Dependent Role="Yorumlar">
+              <PropertyRef Name="BlogYazisiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Blogcum4ModelStoreContainer">
+          <EntitySet Name="Blogcular" EntityType="Self.Blogcular" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bloglar" EntityType="Self.Bloglar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Iletisim" EntityType="Self.Iletisim" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Yorumlar" EntityType="Self.Yorumlar" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Bloglar_Blogcular" Association="Self.FK_Bloglar_Blogcular">
+            <End Role="Blogcular" EntitySet="Blogcular" />
+            <End Role="Bloglar" EntitySet="Bloglar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Iletisim_Blogcular" Association="Self.FK_Iletisim_Blogcular">
+            <End Role="Blogcular" EntitySet="Blogcular" />
+            <End Role="Iletisim" EntitySet="Iletisim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Yorumlar_Blogcular" Association="Self.FK_Yorumlar_Blogcular">
+            <End Role="Blogcular" EntitySet="Blogcular" />
+            <End Role="Yorumlar" EntitySet="Yorumlar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Yorumlar_Bloglar" Association="Self.FK_Yorumlar_Bloglar">
+            <End Role="Bloglar" EntitySet="Bloglar" />
+            <End Role="Yorumlar" EntitySet="Yorumlar" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Blogcum4Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Blogcular">
+          <Key>
+            <PropertyRef Name="BlogcuID" />
+          </Key>
+          <Property Name="BlogcuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BlogcuAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BlogcuSoyadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Bloglar" Relationship="Self.FK_Bloglar_Blogcular" FromRole="Blogcular" ToRole="Bloglar" />
+          <NavigationProperty Name="Iletisim" Relationship="Self.FK_Iletisim_Blogcular" FromRole="Blogcular" ToRole="Iletisim" />
+          <NavigationProperty Name="Yorumlar" Relationship="Self.FK_Yorumlar_Blogcular" FromRole="Blogcular" ToRole="Yorumlar" />
+        </EntityType>
+        <EntityType Name="Bloglar">
+          <Key>
+            <PropertyRef Name="BlogYazisiID" />
+          </Key>
+          <Property Name="BlogYazisiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BlogYazisi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Kategori" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BlogcuID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Blogcular" Relationship="Self.FK_Bloglar_Blogcular" FromRole="Bloglar" ToRole="Blogcular" />
+          <NavigationProperty Name="Yorumlar" Relationship="Self.FK_Yorumlar_Bloglar" FromRole="Bloglar" ToRole="Yorumlar" />
+        </EntityType>
+        <EntityType Name="Iletisim">
+          <Key>
+            <PropertyRef Name="IletiID" />
+          </Key>
+          <Property Name="IletiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ileti" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Konu" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BlogcuID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Blogcular" Relationship="Self.FK_Iletisim_Blogcular" FromRole="Iletisim" ToRole="Blogcular" />
+        </EntityType>
+        <EntityType Name="Yorumlar">
+          <Key>
+            <PropertyRef Name="YorumID" />
+          </Key>
+          <Property Name="YorumID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Yorum" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BlogcuID" Type="Int32" Nullable="false" />
+          <Property Name="BlogYazisiID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Blogcular" Relationship="Self.FK_Yorumlar_Blogcular" FromRole="Yorumlar" ToRole="Blogcular" />
+          <NavigationProperty Name="Bloglar" Relationship="Self.FK_Yorumlar_Bloglar" FromRole="Yorumlar" ToRole="Bloglar" />
+        </EntityType>
+        <Association Name="FK_Bloglar_Blogcular">
+          <End Role="Blogcular" Type="Self.Blogcular" Multiplicity="1" />
+          <End Role="Bloglar" Type="Self.Bloglar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Blogcular">
+              <PropertyRef Name="BlogcuID" />
+            </Principal>
+            <Dependent Role="Bloglar">
+              <PropertyRef Name="BlogcuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Iletisim_Blogcular">
+          <End Role="Blogcular" Type="Self.Blogcular" Multiplicity="1" />
+          <End Role="Iletisim" Type="Self.Iletisim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Blogcular">
+              <PropertyRef Name="BlogcuID" />
+            </Principal>
+            <Dependent Role="Iletisim">
+              <PropertyRef Name="BlogcuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Yorumlar_Blogcular">
+          <End Role="Blogcular" Type="Self.Blogcular" Multiplicity="1" />
+          <End Role="Yorumlar" Type="Self.Yorumlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Blogcular">
+              <PropertyRef Name="BlogcuID" />
+            </Principal>
+            <Dependent Role="Yorumlar">
+              <PropertyRef Name="BlogcuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Yorumlar_Bloglar">
+          <End Role="Bloglar" Type="Self.Bloglar" Multiplicity="1" />
+          <End Role="Yorumlar" Type="Self.Yorumlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bloglar">
+              <PropertyRef Name="BlogYazisiID" />
+            </Principal>
+            <Dependent Role="Yorumlar">
+              <PropertyRef Name="BlogYazisiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Blogcum4Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Blogcular" EntityType="Self.Blogcular" />
+          <EntitySet Name="Bloglar" EntityType="Self.Bloglar" />
+          <EntitySet Name="Iletisim" EntityType="Self.Iletisim" />
+          <EntitySet Name="Yorumlar" EntityType="Self.Yorumlar" />
+          <AssociationSet Name="FK_Bloglar_Blogcular" Association="Self.FK_Bloglar_Blogcular">
+            <End Role="Blogcular" EntitySet="Blogcular" />
+            <End Role="Bloglar" EntitySet="Bloglar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Iletisim_Blogcular" Association="Self.FK_Iletisim_Blogcular">
+            <End Role="Blogcular" EntitySet="Blogcular" />
+            <End Role="Iletisim" EntitySet="Iletisim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Yorumlar_Blogcular" Association="Self.FK_Yorumlar_Blogcular">
+            <End Role="Blogcular" EntitySet="Blogcular" />
+            <End Role="Yorumlar" EntitySet="Yorumlar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Yorumlar_Bloglar" Association="Self.FK_Yorumlar_Bloglar">
+            <End Role="Bloglar" EntitySet="Bloglar" />
+            <End Role="Yorumlar" EntitySet="Yorumlar" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Blogcum4ModelStoreContainer" CdmEntityContainer="Blogcum4Entities">
+          <EntitySetMapping Name="Blogcular">
+            <EntityTypeMapping TypeName="Blogcum4Model.Blogcular">
+              <MappingFragment StoreEntitySet="Blogcular">
+                <ScalarProperty Name="BlogcuID" ColumnName="BlogcuID" />
+                <ScalarProperty Name="BlogcuAdi" ColumnName="BlogcuAdi" />
+                <ScalarProperty Name="BlogcuSoyadi" ColumnName="BlogcuSoyadi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bloglar">
+            <EntityTypeMapping TypeName="Blogcum4Model.Bloglar">
+              <MappingFragment StoreEntitySet="Bloglar">
+                <ScalarProperty Name="BlogYazisiID" ColumnName="BlogYazisiID" />
+                <ScalarProperty Name="BlogYazisi" ColumnName="BlogYazisi" />
+                <ScalarProperty Name="Kategori" ColumnName="Kategori" />
+                <ScalarProperty Name="BlogcuID" ColumnName="BlogcuID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Iletisim">
+            <EntityTypeMapping TypeName="Blogcum4Model.Iletisim">
+              <MappingFragment StoreEntitySet="Iletisim">
+                <ScalarProperty Name="IletiID" ColumnName="IletiID" />
+                <ScalarProperty Name="Ileti" ColumnName="Ileti" />
+                <ScalarProperty Name="Konu" ColumnName="Konu" />
+                <ScalarProperty Name="BlogcuID" ColumnName="BlogcuID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Yorumlar">
+            <EntityTypeMapping TypeName="Blogcum4Model.Yorumlar">
+              <MappingFragment StoreEntitySet="Yorumlar">
+                <ScalarProperty Name="YorumID" ColumnName="YorumID" />
+                <ScalarProperty Name="Yorum" ColumnName="Yorum" />
+                <ScalarProperty Name="BlogcuID" ColumnName="BlogcuID" />
+                <ScalarProperty Name="BlogYazisiID" ColumnName="BlogYazisiID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
