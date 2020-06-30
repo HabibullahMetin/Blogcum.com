@@ -1,0 +1,35 @@
+﻿@model Blogcum.Models.Hakkimizda
+ 
+@{
+    ViewBag.Title = "Hakkimizda";
+    Layout = "~/Views/Shared/Anasayfa_Layout.cshtml";
+}
+
+<div class="col-md-8">
+
+    <img  src="~/Image2/Tortum.jpg" alt="Habibullah Metin" height="240px" width="180px"  /> 
+    <img src="~/Image2/IMG-20160805-WA0012.jpg" alt="Lukasz podolski" height="240px" width="180px /> <br />
+    
+
+    @using (Html.BeginForm())
+    {
+
+        <h6>  <b>  Habibullah Metin                            Lukasz Podolski  </b>  </h6>   <br />
+        <h6>  Bir yorum yazın   </h6>
+
+        <h6>
+            Kim olduğumuzu,bloğumuzun içeriği ve işleyişi hakkında ziyaretçiye bilgi verecek yazı alanıdır.
+            Vizyonumuz ve misyonumuz da bu alanda ziyaret çi tarafından okunabilecektir
+        </h6>
+        <br />
+
+        @Html.TextAreaFor(x=>x.Yorum)
+  
+            <input type="submit" value="Gönder" name="Gönder" /> 
+    }
+    <h6 > Burada listelenecek olan bloglara yorum yazma olacaktır.</h6>
+    <h4>Hakkimizda</h4>
+
+</div>
+
+

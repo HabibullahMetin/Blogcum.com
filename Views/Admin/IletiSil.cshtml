@@ -1,0 +1,63 @@
+﻿@model Blogcum.Models.Iletisim
+@{
+    ViewBag.Title = "IletiSil";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h2>IletiSil</h2>
+<hr />
+
+<p>
+    Silmek istediğinizden emin misiniz ?
+
+</p>
+
+<table>
+    <tr>
+        <td> <b> Konu: </b> </td>
+        <td> @Model.Konu </td>
+    </tr>
+
+    <tr>
+        <td>  <b>  İleti Yazısı : </b> </td>
+        <td> @Model.Ileti </td>
+    </tr>
+
+    <tr>
+        <td>  <b>  Blogcu Adı : </b> </td>
+        <td> @Model.Blogcular.BlogcuAdi </td>
+    </tr>
+
+    <tr>
+        <td>  <b>  Blogcu Soyadı : </b> </td>
+        <td> @Model.Blogcular.BlogcuSoyadi </td>
+    </tr>
+
+</table>
+<br />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="input-group ">
+        <input type="submit" value="Sil" class="btn btn-warning" />
+
+    </div>
+
+    <br />
+}
+<div class="input-group">
+    @if (ViewBag.Result != null)
+    {
+        <div class="alert alert-@ViewBag.Status" role="alert">
+            @ViewBag.Result
+        </div>
+
+    }
+
+</div>
+
+

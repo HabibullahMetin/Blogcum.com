@@ -1,0 +1,55 @@
+﻿@model Blogcum.Models.Yorumlar 
+@{
+    ViewBag.Title = "YorumEkle";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h2>YorumEkle</h2>
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="input-group">
+        <span class="input-group-addon" id="txtyorum">Yorum</span>
+        @Html.TextBoxFor(x => x.Yorum, new { @class = "form-control", placeholder = "yorum adı", aria_describedby = "txtyorum" })
+        @Html.ValidationMessageFor(x => x.Yorum, "", new { @class = "text-danger" })
+    </div>
+    <br>
+
+    <div class="input-group">
+        <span class="input-group-addon" id="ddlblogcu">Blogcu </span>
+        @Html.DropDownListFor(x => x.Blogcular.BlogcuID, (List<SelectListItem>)ViewBag.Blogcular, new { @class = "form-control", aria_describedby = "ddlblogcu" })
+
+    </div>
+    <br>
+    <div class="input-group">
+        <span class="input-group-addon" id="ddlblog">Blog</span>
+        @Html.DropDownListFor(x => x.Bloglar.BlogYazisiID, (List<SelectListItem>)ViewBag.Bloglar, new { @class = "form-control", aria_describedby = "ddlblog", cols = "30", rows = "20" })
+    </div>
+    <br>
+
+
+    <div class="input-group ">
+        <input type="submit" value="Kaydet" class="btn btn-warning" />
+
+    </div>
+
+    <br />
+
+    <div class="input-group">
+        @if (ViewBag.Result != null)
+        {
+            <div class="alert alert-@ViewBag.Status" role="alert">
+                @ViewBag.Result
+            </div>
+
+        }
+
+    </div>
+
+}
+

@@ -1,0 +1,29 @@
+﻿@using Blogcum.Models
+@model IEnumerable<BlogYaz>
+@model IEnumerable<Blogcular>
+
+@{
+    ViewBag.Title = "BlogYaz";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h6>  Blogunuzu bu kısma yazınız.</h6>
+
+@using (Html.BeginForm())
+
+{
+    <p>
+        <i>
+
+            Blogunuz : @Html.TextAreaFor(x=>x.BlogYazisi,new { @rows = "20", @cols = "80" }) <br />
+            Adınız  :  @Html.TextBoxFor(x=>x.BlogcuAdi) <br />  
+            Soyadınız : @Html.TextBoxFor(x=>x.BlogcuSoyadi) <br />
+            Kategori  : @Html.TextBoxFor(x=>x.Kategori) <br />
+        </i>
+    </p>
+}
+<input type="submit" value="Yayınla" name="Yayınla" />
+
+
+<h2>BlogYaz</h2>
+

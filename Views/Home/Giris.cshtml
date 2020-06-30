@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "Giris";
+    Layout = "~/Views/Shared/Anasayfa_Layout.cshtml";
+}
+
+<h2> Giris</h2>
+<hr />
+
+@using (Html.BeginForm())
+{
+
+    <div class="input-group">
+        <span class="input-group-addon" id="txtgiris"> Ad Soyad giriniz.</span>
+        @Html.TextBox("text1")
+    </div>
+    <br>
+
+    <div class="input-group ">
+        <input type="submit" value="Giriş" class="btn btn-warning" />
+
+    </div>
+
+}
+
+
+@*
+      @using (Html.BeginForm())
+    {
+
+        <p>
+            <i>
+                Adınız : @Html.TextBoxFor(x => x.Blogcular.BlogcuAdi)  <br />
+                Soyadınız : @Html.TextBoxFor(x => x.BlogcuSoyadi) <br />
+                Sifreniz : @Html.PasswordFor(x => x.Sifre)  <br />
+
+            </i>
+        </p>
+    }
+
+    <input type="submit" value="Kayıt Ol" name="Kayit" />
+    <h2>Giris</h2>
+
+*@
+
+

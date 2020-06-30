@@ -1,0 +1,51 @@
+﻿
+@using Blogcum.ViewModels
+@model RelatedClass
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="alert alert-primary" role="alert">
+        Hosgeldin @ViewBag.Blogcu
+</div>
+
+@foreach (var blog2 in Model.Bloglar)
+{
+    <ul class="list-group">
+        <li class="list-group-item">
+
+            <h6>
+                Kategori   :   @blog2.Kategori <br />
+            </h6>
+            @blog2.BlogYazisi  <br />
+            <h6> Blogcu Adı :  </h6>     @blog2.Blogcular.BlogcuAdi
+
+            <h6> Blogcu Soyadı :  </h6>   @blog2.Blogcular.BlogcuSoyadi
+            </li>
+        </ul>
+             }
+
+
+            @* <div class="col-md-8">
+                    <article class="col-sm-12">
+                        <div class="card mb-4">
+                            <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+                            <div class="card-body">
+                                <h2 class="card-title">Post Title</h2>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+                                <a href="#" class="btn btn-primary">Read More &rarr;</a>
+                            </div>
+                            <div class="card-footer text-muted">
+                                Posted on January 1, 2017 by
+                                <a href="#">Start Bootstrap</a>
+                            </div>
+                        </div>
+
+                    </article>
+                </div>*@
+
+
+
+

@@ -1,0 +1,54 @@
+﻿@using Blogcum.ViewModels
+@model RelatedClass
+@{
+    ViewBag.Title = "Yorumlar";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h2>Yorumlar</h2>
+<hr />
+
+@Html.AntiForgeryToken()
+
+<div>
+    @Html.ActionLink("Yeni Yorum", "YorumEkle", null, new { @class = "btn btn-success" })
+    <br /> <br />
+</div>
+
+
+@foreach (var yorum in Model.Yorumlar)
+{
+    <ul class="list-group">
+        <li class="list-group-item">
+
+            
+         <div class="card" style="width: 20rem">
+             <div class="card-body">
+                 <p class="card-text"> @yorum.Bloglar.BlogYazisi</p>
+                 <h6 class="card-title">
+                     Bu yorum @(yorum.Blogcular.BlogcuAdi + " " + yorum.Blogcular.BlogcuSoyadi) isimli blogcu tarafından yazıldı.
+                     @yorum.Bloglar.Kategori kategorili bloğa yazıldı.
+                 </h6>
+
+                 <h6>
+                     Yorum :   @yorum.Yorum <br />  @* Hata var düzeltilecek*@
+           @Html.ActionLink("Güncelle", "YorumGuncelle",new { yorumid = yorum.YorumID }, new { @class = "btn btn-primary" })
+           @Html.ActionLink("Sil", "YorumSil", new { yorumid = yorum.YorumID }, new { @class = "btn btn-danger" })
+                 </h6>
+             </div>
+         </div>
+        
+     
+
+            @*
+            <h6>
+                Kategori   :   @yorum.Bloglar.Kategori <br />
+            </h6>
+            @yorum.Bloglar.BlogYazisi  <br />
+            <h6> Blogcu Adı :  </h6>     @yorum.Blogcular.BlogcuAdi
+
+            <h6> Blogcu Soyadı :  </h6>   @yorum.Blogcular.BlogcuSoyadi
+        </li> *@
+
+    </ul>
+}

@@ -1,0 +1,55 @@
+﻿
+@using Blogcum.ViewModels
+@model RelatedClass
+
+@{
+    ViewBag.Title = "BlogYaz";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h6>  Blogunuzu bu kısma yazınız.</h6>
+
+@Html.AntiForgeryToken()
+
+<div>
+@Html.ActionLink("Yeni Blog", "BlogEkle", null, new { @class = "btn btn-success" })
+<br /> <br />
+</div>
+
+@foreach (var blog in Model.Bloglar)
+{
+    <ul class="list-group">
+        <li class="list-group-item">  
+
+           <h6>Kategori   :   @blog.Kategori <br />
+            </h6>
+            @blog.BlogYazisi  <br />
+           <h6> Blogcu Adı :  </h6>     @blog.Blogcular.BlogcuAdi
+
+            <h6> Blogcu Soyadı :  </h6>   @blog.Blogcular.BlogcuSoyadi
+            @Html.ActionLink("Güncelle", "BlogGuncelle",new { blogid = blog.BlogYazisiID }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Sil", "BlogSil", new { blogid = blog.BlogYazisiID }, new { @class = "btn btn-danger" })
+        </li>
+
+    </ul>
+}
+
+
+@*
+    @using (Html.BeginForm())
+
+    {
+        <p>
+            <i>
+
+                Blogunuz : @Html.TextAreaFor(x=>x.BlogYazisi,new { @rows = "20", @cols = "80" }) <br />
+
+                Kategori  : @Html.TextBoxFor(x=>x.Kategori) <br />
+            </i>
+        </p>
+    }   
+<input type="submit" value="Yayınla" name="Yayınla" />  *@
+
+
+<h2>BlogYaz</h2>
+

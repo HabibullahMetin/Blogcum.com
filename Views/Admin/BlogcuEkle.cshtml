@@ -1,0 +1,49 @@
+﻿@model Blogcum.Models.Blogcular
+@{
+    ViewBag.Title = "BlogcuEkle";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h2>BlogcuEkle</h2>
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger"})
+
+<div class="input-group">
+    <span class="input-group-addon" id="txtblogcuad">Blogcu Adı</span>
+    @Html.TextBoxFor(x => x.BlogcuAdi, new { @class = "form-control", placeholder = "blogcu adı", aria_describedby = "txtblogcuad" })
+    @Html.ValidationMessageFor(x=> x.BlogcuAdi,"",new { @class="text-danger" })
+</div>
+<br>
+
+<div class="input-group">
+    <span class="input-group-addon" id="txtblogcusoyad">Blogcu Soyadı</span>
+    @Html.TextBoxFor(x => x.BlogcuSoyadi, new { @class = "form-control", placeholder = "blogcu soyadı", aria_describedby = "txtblogcusoyad" })
+    @Html.ValidationMessageFor(x => x.BlogcuSoyadi, "", new { @class = "text-danger" })
+</div>
+<br>
+
+
+<div class="input-group ">
+    <input type="submit" value="Kaydet" class="btn btn-warning" />
+
+</div>
+
+ <br />
+
+ <div class="input-group">
+     @if(ViewBag.Result != null)
+             {
+     <div class="alert alert-@ViewBag.Status" role="alert">
+       @ViewBag.Result
+     </div>
+
+     }
+
+ </div>
+
+}
